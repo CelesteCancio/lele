@@ -32,10 +32,10 @@ next.addEventListener("click", () => {
     cargarPokemones(offset,limit)
 });
 
-btnBuscar.on("click", ()=>{    
+btnBuscar.onclick = ()=>{    
     console.log("btnBuscar clickeado");
     mostrarCardPokemonGrande();       
-});
+};
 
 function cargarPokemones (offest, limit){
     spinner.style.display = "block";
@@ -121,13 +121,13 @@ function removeChildNodes (parent) {
 }
 
 function mostrarCardPokemonGrande (){
-    fetch (`${URL}/${nombrePokemonInput.val().toLowerCase()}`).
+    console.log(nombrePokemonInput.value.toLowerCase());
+    fetch (`${URL}/${nombrePokemonInput.value.toLowerCase()}`).
     then(respuesta => respuesta.json()).
     then(respuestaJSON => {
-        const URLimg = Object.values(respuestaJSON.sprites.other["official-artwork"]);        
-        imgPokemon.attr("src",URLimg);
-        caracteristicasPokemon.text("");
-        nombrePokemon.text(nombrePokemonInput.val());        
+        imgPokemon.src = respuestaJSON.sprites.front_default;        
+        //caracteristicasPokemon.textContent = "";        
+        nombrePokemon.textContent = nombrePokemonInput.value;                
 
         //Para mostrar toda la info dentro de la rta haria esto:
         // Object.keys(respuestaJSON).forEach(caracteristica => {
@@ -137,19 +137,38 @@ function mostrarCardPokemonGrande (){
         // }); 
 
         //Para mostrar solo las caracteristicas que quiero:
-        caracteristicasPokemon.append($(`<li class="negrita mt-2">ID: </li>`));           
-        caracteristicasPokemon.append($(`<li>${respuestaJSON["id"]}</li>`));  
-        caracteristicasPokemon.append($(`<li class="negrita mt-2">Experiencia: </li>`));        
-        caracteristicasPokemon.append($(`<li>${respuestaJSON["base_experience"]}</li>`)); 
-        caracteristicasPokemon.append($(`<li class="negrita mt-2">Altura: </li>`));        
-        caracteristicasPokemon.append($(`<li>${respuestaJSON["height"]}</li>`)); 
-        caracteristicasPokemon.append($(`<li class="negrita mt-2">Peso: </li>`));        
-        caracteristicasPokemon.append($(`<li>${respuestaJSON["weight"]}</li>`));
-        caracteristicasPokemon.append($(`<li class="negrita mt-2">Orden: </li>`));        
-        caracteristicasPokemon.append($(`<li>${respuestaJSON["order"]}</li>`));         
-        pieCard.addClass("visible");
+        const id = document.createElement ("li");
+        id.textContent = `ID: ${respuestaJSON.id}`;
+        caracteristicasPokemon.appendChild(id);
+        console.log(id);
+
+        const experiencia = document.createElement ("li");
+        experiencia.textContent = `Experiencia: ${respuestaJSON.base_experience}`;
+        caracteristicasPokemon.appendChild(experiencia);
+        console.log(experiencia);
+
+        const altura = document.createElement ("li");
+        altura.textContent = `Altura: ${respuestaJSON.height}`;
+        caracteristicasPokemon.appendChild(altura);
+        console.log(altura);
+
+        const peso = document.createElement ("li");
+        peso.textContent = `Peso: ${respuestaJSON.weight}`;
+        caracteristicasPokemon.appendChild(peso);
+        console.log(peso);
+
+        
+        const orden = document.createElement ("li");
+        orden.textContent = `Orden: ${respuestaJSON.order}`;
+        caracteristicasPokemon.appendChild(orden);
+        console.log(orden);
+     
+        pieCard.classList.add("visible");
+        console.log("holu1");
         console.log(pokemonCardModal);
+        console.log("holu2");
         $('#pokemon-card-modal').modal("show"); 
+        console.log("holu3");
     }).    
     catch (error => mostrarCardError ());
 }
