@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500&family=Crete+Round&family=Secular+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./main.css">
+</head>
+<body>
+    <div class="container-fluid m-0 vh-100 row justify-content-center align-items-center">
+        <div class="mb-3 text-center justify-content-center labels">
+            <label for="exampleFormControlInput1" class="form-label w-50 mt-3" >Ingresá el nombre del pokemon</label>
+            <input class="form-control col-xs-4 w-25 m-auto" id="nombre-pokemon-input" type="text" value= "" placeholder="Ej: Sinistea" aria-label=".form-control-lg example">            
+            <button type="button" class="btn btn-secondary m-2" id="btn-buscar">Buscar</button>
+        </div>
+        <div class="container-fluid vh-75" id="cards-container">            
+        </div>            
+        <nav class="pagination vh-25">
+            <ul class="pagination">
+              <li id="previous" class="page-item"><a class="page-link" href="#">Anterior</a></li>
+              <li id="next" class="page-item"><a class="page-link" href="#">Siguiente</a></li>
+            </ul>
+        </nav>
+        <div id="spinner" class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div class="modal fade" id="pokemon-card-modal" tabindex="-1" aria-labelledby="infoModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal">
+                <div class= "justify-content-center align-items-center" id="card-pokemon-grande">
+                    <div class="card text-dark bg-light mb-3 border border-5">                
+                        <div class="row g-0">
+                            <img src="..." class="card-img-top w-50 m-auto border border-3 rounded-circle border-white bg-secondary" id="img-pokemon" alt="...">       
+                            <div class="card-body" id="info-pokemon">
+                                <h4 class="card-title text-center" id="nombre-pokemon"></h4>
+                                <ul class="list-group" id="caracteristicas-pokemon"></ul>
+                                <p class="card-text oculta" id="pie-card"><small class="text-muted">Info obtenida de "https://pokeapi.co/api/v2/pokemon"</small></p>
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <script src="./main.js"></script>    
+</body>
+</html>
