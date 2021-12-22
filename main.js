@@ -11,7 +11,7 @@ const previous = document.querySelector("#previous");
 const next = document.querySelector("#next");
 const cardsContainer = document.querySelector("#cards-container");
 const spinner = document.querySelector("#spinner");
-const URL = "http://pokeapi.co/api/v2/pokemon";
+const URL = "https://pokeapi.co/api/v2/pokemon";
 
 let offset = 1; //arranca en el 1er pokemon
 let limit = 11; //trae 12 pokemones. El offset + 11 mas
