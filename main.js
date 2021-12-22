@@ -11,7 +11,7 @@ const previous = document.querySelector("#previous");
 const next = document.querySelector("#next");
 const cardsContainer = document.querySelector("#cards-container");
 const spinner = document.querySelector("#spinner");
-const URL = "http://pokeapi.co/api/v2/pokemon";
+const URL = "https://pokeapi.co/api/v2/pokemon";
 
 let offset = 1; //arranca en el 1er pokemon
 let limit = 11; //trae 12 pokemones. El offset + 11 mas
@@ -21,14 +21,14 @@ cargarPokemones(offset,limit);
 previous.addEventListener("click", () => {
     if(offset != 1){
         offset -= 12;    
-        removeChildNodes(pokemonContainer);
+        removeChildNodes(cardsContainer);
         cargarPokemones(offset,limit);
     }
 });
 
 next.addEventListener("click", () => {
-    offset += 9;
-    removeChildNodes(pokemonContainer); 
+    offset += 12;
+    removeChildNodes(cardsContainer); 
     cargarPokemones(offset,limit)
 });
 
@@ -37,7 +37,7 @@ btnBuscar.onclick = ()=>{
     mostrarCardPokemonGrande();       
 };
 
-function cargarPokemones (offest, limit){
+function cargarPokemones (offset, limit){
     spinner.style.display = "block";
     for (let i=offset; i<=offset + limit; i++){
         cargarPokemon(i);
